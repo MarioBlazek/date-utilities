@@ -1,0 +1,28 @@
+os: linux
+dist: bionic
+
+language: php
+
+php:
+    - 7.3
+    - 7.4
+
+cache:
+    directories:
+        - $HOME/.cache/composer
+
+branches:
+    only:
+        - master
+        - /^\d.\d+$/
+
+script:
+    - ./vendor/bin/phpunit -d memory_limit=-1 --colors -c phpunit.xml.dist
+
+notification:
+    email: false
+
+sudo: false
+
+git:
+    depth: 1

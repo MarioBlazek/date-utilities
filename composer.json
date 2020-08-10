@@ -1,0 +1,46 @@
+{
+    "name": "marioblazek/date-utilities",
+    "description": "A simple date utility package",
+    "type": "library",
+    "keywords": [
+        "date",
+        "datetime",
+        "carbon",
+        "week",
+        "month",
+        "interval"
+    ],
+    "homepage": "https://github.com/MarioBlazek/date-utilities",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mario Blažek",
+            "homepage": "https://marioblazek.dev",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Marek\\DateUtilities\\": "lib"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Marek\\DateUtilities\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "nesbot/carbon": "^2.38"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.3"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
