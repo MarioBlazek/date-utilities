@@ -39,6 +39,26 @@ class DateUtilitiesTest extends TestCase
         $this->assertSame($result, DateUtilities::isInCurrentDateInterval($current, $start, $end));
     }
 
+    /**
+     * @dataProvider provideEndOfTheDay
+     */
+    public function testGetEndOfTheDay($date, $result): void
+    {
+        $end = DateUtilities::getEndOfTheDay($date);
+
+        $this->assertEquals($result, $end->format('Y-m-d H:i:s'));
+    }
+
+    /**
+     * @dataProvider provideStartOfTheDay
+     */
+    public function testStartOfTheDay($date, $result): void
+    {
+        $start = DateUtilities::getStartOfTheDay($date);
+
+        $this->assertEquals($result, $start->format('Y-m-d H:i:s'));
+    }
+
     public function provideWeekDates(): array
     {
         return [
@@ -71,6 +91,26 @@ class DateUtilitiesTest extends TestCase
             [new DateTimeImmutable('2020-08-10'), new DateTimeImmutable('2020-08-15'), new DateTimeImmutable('2020-08-31'), false],
             [new DateTimeImmutable('2020-09-01'), new DateTimeImmutable('2020-08-15'), new DateTimeImmutable('2020-08-31'), false],
             [new DateTimeImmutable('2020-08-01'), new DateTimeImmutable('2020-08-01'), new DateTimeImmutable('2020-08-31'), true],
+        ];
+    }
+
+    public function provideEndOfTheDay(): array
+    {
+        return [
+            [new DateTimeImmutable('2020-08-10'), '2020-08-10 23:59:59'],
+            [new DateTimeImmutable('2019-09-10'), '2019-09-10 23:59:59'],
+            [new DateTimeImmutable('2018-10-10'), '2018-10-10 23:59:59'],
+            [new DateTimeImmutable('2021-08-25'), '2021-08-25 23:59:59'],
+        ];
+    }
+
+    public function provideStartOfTheDay(): array
+    {
+        return [
+            [new DateTimeImmutable('2020-08-10'), '2020-08-10 00:00:00'],
+            [new DateTimeImmutable('2019-09-10'), '2019-09-10 00:00:00'],
+            [new DateTimeImmutable('2018-10-10'), '2018-10-10 00:00:00'],
+            [new DateTimeImmutable('2021-08-25'), '2021-08-25 00:00:00'],
         ];
     }
 }

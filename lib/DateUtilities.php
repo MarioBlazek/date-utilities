@@ -9,12 +9,43 @@ use OutOfRangeException;
 final class DateUtilities
 {
     /**
+     * @param \DateTimeInterface $date
+     *
+     * @return \DateTimeInterface
+     *
+     * @throws \Exception
+     */
+    public static function getStartOfTheDay(DateTimeInterface $date): DateTimeInterface
+    {
+        $current = new Carbon($date);
+        $current->startOfDay();
+
+        return $current->toDateTimeImmutable();
+    }
+
+    /**
+     * @param \DateTimeInterface $date
+     *
+     * @return \DateTimeInterface
+     *
+     * @throws \Exception
+     */
+    public static function getEndOfTheDay(DateTimeInterface $date): DateTimeInterface
+    {
+        $current = new Carbon($date);
+        $current->endOfDay();
+
+        return $current->toDateTimeImmutable();
+    }
+
+    /**
      * Checks if $target is in the same week as $current
      *
-     * @param DateTimeInterface $current
-     * @param DateTimeInterface $target
+     * @param \DateTimeInterface $current
+     * @param \DateTimeInterface $target
      * @param int $startOfWeek
      * @param int $endOfWeek
+     *
      * @return bool
      *
      * @throws \Exception
@@ -34,8 +65,8 @@ final class DateUtilities
     /**
      * Checks if $target is in the same week as $current
      *
-     * @param DateTimeInterface $current
-     * @param DateTimeInterface $dateTime
+     * @param \DateTimeInterface $current
+     * @param \DateTimeInterface $dateTime
      *
      * @return bool
      *
@@ -53,9 +84,9 @@ final class DateUtilities
     /**
      * Checks if $current is in the interval between $start and $end
      *
-     * @param DateTimeInterface $current
-     * @param DateTimeInterface $start
-     * @param DateTimeInterface $end
+     * @param \DateTimeInterface $current
+     * @param \DateTimeInterface $start
+     * @param \DateTimeInterface $end
      *
      * @return bool
      *
